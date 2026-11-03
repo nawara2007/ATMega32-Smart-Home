@@ -1,6 +1,6 @@
 # ATmega32 Smart Home
 
-A bare-metal smart-home controller for the **ATmega32** microcontroller, written in C with no Arduino or vendor libraries: every driver, from the ADC to the PWM timer, is written directly against the hardware registers.
+A bare-metal smart-home controller for the **ATmega32** microcontroller, written in C.
 
 > **This project was the final project of the Embedded Systems Workshop organized by the Aviation Club.**
 
@@ -141,35 +141,3 @@ Final Project Smart Home/
 - **Motor**: `Motor_init`, `Motor_ON(direction, duty%)` and `Motor_OFF`. Supports both directions (`motor_clockwise_direction`, `motor_anticlockwise_direction`).
 - **Flame**: `Flame_init(int_number, callback)` sets up the pin, rising-edge trigger and interrupt, and `FLAME_PinState()` reads the sensor. INT0, INT1 and INT2 are supported.
 - **Buzzer**: `BUZZER_init`, `BUZZER_ON`, `BUZZER_OFF`.
-
----
-
-## Building and running
-
-The project was built with **Microchip (Atmel) Studio** and simulated with **Proteus**.
-
-1. Open `Final Project Smart Home.atsln` in Microchip Studio (or Atmel Studio).
-2. Build the solution. The firmware is produced in `Final Project Smart Home/Debug/`.
-3. Flash `Final Project Smart Home.hex` to the ATmega32 (16 MHz clock), or load it into the Proteus design `Final Project Smart Home.pdsprj`.
-
-Make sure the clock matches `F_CPU = 16000000UL`, otherwise the delays and PWM timing will be off.
-
----
-
-## Known limitations and ideas for improvement
-
-- `AlertMode()` runs inside the INT0 interrupt handler and blocks there while the flame is present. This works for this project, but a more robust design would set a flag in the ISR and handle the alarm in the main loop.
-- The format string `"Temp=%d LDR=%d% "` in `APP/main.c` contains a stray `%`; it should be `%%` to print a percent sign reliably.
-- The LDR percentage uses a fixed calibration factor, so it is tuned to the specific LDR and resistor used.
-- The `Debug/` build output is committed to the repository; adding a `.gitignore` would keep it out.
-- Possible extensions: manual override buttons, a second sensor input, UART logging, or a Timer-based non-blocking alarm.
-
----
-
-## Credits
-
-Designed and implemented by **Mohamed Nawara** as the final project of the **Embedded Systems Workshop** by the **Aviation Club**.
-
-## License
-
-This project is released under the [MIT License](LICENSE).
