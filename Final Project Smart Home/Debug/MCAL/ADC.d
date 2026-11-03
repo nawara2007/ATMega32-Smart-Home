@@ -1,0 +1,11 @@
+MCAL/ADC.d MCAL/ADC.o: ../MCAL/ADC.c ../MCAL/ADC.h \
+ ../MCAL/../LIB/STD_TYPES.h ../MCAL/EXT_INTERRUPT.h \
+ ../MCAL/../LIB/BIT_MATH.h
+
+../MCAL/ADC.h:
+
+../MCAL/../LIB/STD_TYPES.h:
+
+../MCAL/EXT_INTERRUPT.h:
+
+../MCAL/../LIB/BIT_MATH.h:
